@@ -1,0 +1,39 @@
+<!:DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Grade Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; background-color: #f4f4f9; }
+        .container { max-width: 400px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 4px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Student Grade Calculator</h2>
+    <form method="POST">
+        <label>Enter Marks (comma separated):</label>
+        <input type="text" name="marks" placeholder="e.g., 85, 90, 78" required>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            {% if result.error %}
+                <p class="error"><strong>Error:</strong> {{ result.error }}</p>
+            {% else %}
+                <p><strong>Total Marks:</strong> {{ result.total }}</p>
+                <p><strong>Average Marks:</strong> {{ result.average }}</p>
+                {% if result.grade %}
+                    <p><strong>Grade:</strong> {{ result.grade }}</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
